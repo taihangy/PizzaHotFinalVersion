@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<!--
+This is an app that demonstrates how to control an Arduio board
+with TCP over WiFi from the mobile device and a WiFi shield or
+an Ethernet shield.
+
+Please note that you must enter the IP-address of the Arduino
+for this example to work.
+-->
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no,
+		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+
+	<title>Meng Project, Pizza Hot, ty322, bw476, jc2954</title>
+
+	<style>
+		@import 'ui/css/evothings-app.css';
+	</style>
+
+	<script>
+	// Redirect console.log to Evothings Workbench.
+	if (window.hyper && window.hyper.log) { console.log = hyper.log }
+	</script>
+
+	<script src="cordova.js"></script>
+	<script src="libs/jquery/jquery.js"></script>
+	<script src="libs/evothings/evothings.js"></script>
+	<script src="libs/evothings/ui/ui.js"></script>
+	<script src="libs/evothings/arduinotcp/arduinotcp.js"></script>
+
+
+</head>
+
+<body ontouchstart=""><!-- ontouchstart="" enables low-delay CSS transitions. -->
+
+	<header>
+		<button class="back" onclick="history.back()">
+			<img src="ui/images/arrow-left.svg" />
+		</button>
+
+		<!-- <img class="logotype" src="ui/images/logo.svg" alt="Evothings" /> -->
+
+		<!--<button class="menu" onclick=""><img src="ui/images/menu.svg" /></button>-->
+	</header>
+
+	<h1>Meng Project, Pizza Hot, ty322, bw476, jc2954</h1>
+
+	<h2>Enter IP-address of the PIC-32</h2>
+
+	<input id="PicIpAddress" value="172.20.10.8" type="url" />
+	<br/>
+	<button class="green" onclick="app.connect()">CONNECT</button>
+	<button class="charcoal" onclick="app.disconnect()">DISCONNECT</button>
+	<br/>
+	<p>Status: <span id="PicStatus">Not connected</span></p>
+	<br />
+	<h2>Enter start location</h2>
+	<input id="start" type="text" value="ithaca,fairview" />
+	<br/>
+	<h2>Enter end location</h2>
+	<input id="end" type="text" value="ithaca,maplewood" />
+	<br/>
+	<button class="green" onclick="getPathandSend()">Find Path and send to smart box</button>
+	<br />
+	<p>Response: <span id="response">Loading...</span></p>
+
+	<script>
+	// Short name for Arduino TCP library.
+	var arduino = evothings.arduinotcp
+
+	// Application object.
+	var app = {}
+
+	// write data in format "lat,40.000000,lon.45.000000\n"
+	app.writeLocationData = function(location)
+	{
+		arduino.writeLocationString(location);
+	}
+
+	// write how many location points
+	app.writeDataLength = function(number)
+	{
+		arduino.digitalWrite(number);
+	}
+
+	app.connect = function()
+	{
+		arduino.connect($('#PicIpAddress').val(), 3300, function(success)
+		{
+			if (success)
+			{
+				$('#PicStatus').html('Connected to the PIC-32')
+			}
+			else
+			{
+				$('#PicStatus').html('Connection error')
+			}
+		})
+	}
+
+	app.disconnect = function()
+	{
+		arduino.disconnect()
+		$('#PicStatus').html('Disconnected')
+	}
+
+	
+	// Google map direction
+	var overview_path, points,dataSize;
+	// Google map direction
+	function getPathandSend() {
+	  // Set destination, origin and travel mode.
+	  var request = {
+	    destination: $("#end").val(),
+	    origin: $("#start").val(),
+	    travelMode: google.maps.TravelMode.WALKING
+	  };
+
+	  var directionsService = new google.maps.DirectionsService();
+	  directionsService.route(request, function(response, status) {
+	    if (status == google.maps.DirectionsStatus.OK) {
+			var routes = response.routes;
+			overview_path = response.routes[0].overview_path;
+			$("#response").html(JSON.stringify(overview_path));
+			points = stringBuilder(overview_path);
+console.log("points: \n" + points);
+			dataSize = overview_path.length;
+		}
+	  });
+	  app.writeDataLength("size," + dataSize.toString());
+	  app.writeDataLength(points.toString());
+	  app.writeDataLength("done");
+	}
+
+	function stringBuilder(overview_path) {
+		var res = "";
+		for (var i = 0; i < overview_path.length; i++) {
+			var point = overview_path[i];
+			var lat = point.lat();
+			var lon = point.lng();
+			res += "lat," + lat.toPrecision(8);
+			res += ",lon," + lon.toPrecision(8);
+			if (i != overview_path.length - 1) {
+				res += "\n";
+			}
+		}
+		return res;
+	}
+	</script>
+	<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApQwIu4qtwE2uQGjYjaNLFa5_DwrgYNNI&signed_in=true&callback=initMap">
+    </script>
+</body>
+
+</html>

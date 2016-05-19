@@ -1,0 +1,27 @@
+<ion-view view-title="About Us">
+  <ion-content>
+  	<div class="card">
+  		<div class="item item-divider">
+  			Our History
+  		</div>
+  		<div class="item item-body item-text-wrap">
+  			<p>
+  				We contribute to offer fast food delivery service cross Ithaca, making it more convenient taste your favorite dishes.
+  			</p>
+  		</div>
+  	</div>
+  	<div class="card">
+  		<div class="item item-divider">
+  			Corporate Leadership
+  		</div>
+  		<div class="list list-inset">
+	      <div ng-repeat="leader in leaders" href="#/app/aboutus/{{leader.id}}" class="item item-text-wrap item-avatar">
+	      	<img ng-src="{{baseURL+leader.image}}">
+	      	<h2>{{leader.name}}</h2>
+	      	<h3>{{leader.designation}}</h3>
+	      	<p>{{leader.description}}</p>
+	      </div>
+	    </div>
+  	</div>
+  </ion-content>
+</ion-view>
