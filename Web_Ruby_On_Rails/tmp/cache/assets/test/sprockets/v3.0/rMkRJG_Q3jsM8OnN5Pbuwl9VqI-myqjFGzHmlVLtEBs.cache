@@ -1,0 +1,12 @@
+I"(function() {
+  $(function() {
+    $('.store .entry > img').click(function() {
+      return $(this).parent().find(':submit').click();
+    });
+    return $('.store .entry > h3').click(function() {
+      return $(this).parent().find('img').click();
+    });
+  });
+
+}).call(this);
+:ET

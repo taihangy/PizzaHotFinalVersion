@@ -1,0 +1,23 @@
+<h3>Pizza Hot receives your order</h3> <p>
+  This is just to let you know that we've received your recent order:
+</p>
+<table>
+	<thead>
+		<tr>
+			<th colspan="2">Qty</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+		<tbody>
+			<% @order.line_items.each do |line_item| %>
+				<tr>
+					<td><%= line_item.quantity %>&times;</td>
+					<td><%= line_item.product.title %></td>
+				</tr>	
+			<% end %>
+			<tr class="total_line">
+				<td colspan="2">Total</td>
+				<td class="total_cell"><%= number_to_currency(@order.total_price) %></td>
+			</tr>
+	</tbody>
+</table>

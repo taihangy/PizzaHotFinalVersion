@@ -1,0 +1,258 @@
+<!-- Main Content -->
+<div class="main-content">
+	<!-- Banner Start -->
+	<div class="banner padd">
+		<div class="container">
+			<!-- Image -->
+			<%= image_tag("crown-white.png", class: "img-responsive")%>
+			<!-- Heading -->
+			<h2 class="white">Pizza Hot</h2>
+			<ol class="breadcrumb">
+				<li class="active">Home</li>
+			</ol>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!-- menu Start -->
+	
+	<div class="menu padd">
+		<div class="container">
+			<!-- Default Heading -->
+			<div class="default-heading">
+				<!-- Crown image -->
+				<img class="img-responsive" src="/assets/crown.png" alt="" />
+				<!-- Heading -->
+				<h2>Menu</h2>
+				<!-- Paragraph -->
+				<p>A list of most popular dishes.</p>
+				<!-- Border -->
+				<div class="border"></div>
+			</div>
+			<!-- Menu content container -->
+			<div class="menu-container">
+				<div class="row">
+					<div class="col-md-4 col-sm-4">
+						<!-- Menu header -->
+						<div class="menu-head">
+							<!-- Image for menu item -->
+							<img class="menu-img img-responsive img-thumbnail" src="/assets/menu/menu5.jpg" alt="" />
+							<!-- Menu title / Heading -->
+							<h3>Pizza</h3>
+							<!-- Border for above heading -->
+							<div class="title-border br-red"></div>
+						</div>
+						<!-- Menu item details -->
+						<div class="menu-details br-red">
+							<!-- Menu list -->
+							<ul class="list-unstyled">
+								<% @products.each do |product| %>
+									<% if product.catagory == "Pizza"%>
+										<li>
+											<div class="menu-list-item">
+												<!-- Icon -->
+												<i class="fa fa-angle-right"></i> 
+												<%= link_to product do %> <%= product.title%> <% end %>
+												<!-- Price badge -->
+												<span class="pull-right"><%= product.price %></span>
+												<div class="clearfix"></div>
+											</div>
+										</li>
+									<% end %>
+								<% end %>
+							</ul>
+						</div><!-- / Menu details end -->
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<!-- Menu header -->
+						<div class="menu-head">
+							<!-- Image for menu item -->
+							<img class="menu-img img-responsive img-thumbnail" src="/assets/menu/menu2.jpg" alt="" />
+							<!-- Menu title / Heading -->
+							<h3>Burger</h3>
+							<!-- Border for above heading -->
+							<div class="title-border br-green"></div>
+						</div>
+						<!-- Menu item details -->
+						<div class="menu-details br-green">
+							<!-- Menu list -->
+							<ul class="list-unstyled">
+								<% @products.each do |product| %>
+									<% if product.catagory == "Burger"%>
+										<li>
+											<div class="menu-list-item">
+												<!-- Icon -->
+												<i class="fa fa-angle-right"></i> 
+												<%= link_to product do %> <%= product.title%> <% end %>
+												<!-- Price badge -->
+												<span class="pull-right"><%= product.price %></span>
+												<div class="clearfix"></div>
+											</div>
+										</li>
+									<% end %>
+								<% end %>
+							</ul>
+						</div><!-- / Menu details end -->
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<!-- Menu header -->
+						<div class="menu-head">
+							<!-- Image for menu item -->
+							<img class="menu-img img-responsive img-thumbnail" src="/assets/menu/menu3.jpg" alt="" />
+							<!-- Menu title / Heading -->
+							<h3>Dessert</h3>
+							<!-- Border for above heading -->
+							<div class="title-border br-lblue"></div>
+						</div>
+						<!-- Menu item details -->
+						<div class="menu-details br-lblue">
+							<!-- Menu list -->
+							<ul class="list-unstyled">
+								<% @products.each do |product| %>
+									<% if product.catagory == "Dessert"%>
+										<li>
+											<div class="menu-list-item">
+												<!-- Icon -->
+												<i class="fa fa-angle-right"></i> 
+												<%= link_to product do %> <%= product.title%> <% end %>
+												<!-- Price badge -->
+												<span class="pull-right"><%= product.price %></span>
+												<div class="clearfix"></div>
+											</div>
+										</li>
+									<% end %>
+								<% end %>
+							</ul>
+						</div><!-- / Menu details end -->
+					</div>
+				</div>
+			</div> <!-- /Menu container end -->
+		</div>
+	</div>
+	
+	<!-- Menu End -->
+	
+	<!-- New Dishes Start -->
+	
+	<div class="pricing padd">
+		<div class="container">
+			<!-- Default Heading -->
+			<div class="default-heading">
+				<!-- Crown image -->
+				<img class="img-responsive" src="/assets/crown.png" alt="" />
+				<!-- Heading -->
+				<h2>New Arrivals</h2>
+				<!-- Paragraph -->
+				<p>Have a try of the new special arrivals!</p>
+				<!-- Border -->
+				<div class="border"></div>
+			</div>
+			<div class="row">
+				<% @products.each do |product| %>
+					<div class="col-sm-5 col-sm-offset-1 col-xs-12">
+						<!-- Pricing list Item -->
+						<div class="pricing-item">
+							<!-- Image -->
+							<%= image_tag(product.image_url, class: "img-responsive img-thumbnail") %> 
+							<!-- Pricing item details -->
+							<div class="pricing-item-details">
+								<!-- Heading -->
+								<h3><%= link_to product do %> <%= product.title%> <% end %></h3>
+								<!-- Paragraph -->
+								<p style="margin-bottom: 15px"><%= sanitize(product.description) %></p>
+								<!-- Buy link -->
+								<%= button_to 'Add to Cart', line_items_path(product_id: product.id), class: "btn btn-danger" %>
+								<div class="clearfix"></div>
+							</div>
+							<!-- Tag -->
+							<span class="hot-tag br-red"><%= number_to_currency(product.price) %></span>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				<% end %>
+				<!-- <div class="clearfix visible-md"></div> -->
+		</div>
+	</div>
+	
+	<!-- New Dishes End -->
+	
+	<!-- Testimonial Start -->
+	
+	<div class="testimonial padd">
+		<div class="container">
+			<div class="row">
+				<div class="default-heading">
+					<!-- Crown image -->
+					<img class="img-responsive" src="/assets/crown.png" alt="" />
+					<!-- Heading -->
+					<h2>New Reviews</h2>
+					<!-- Paragraph -->
+					<p>Say what our users say and make a smarter choice for your dinner!</p>
+					<!-- Border -->
+					<div class="border"></div>
+				</div>
+				<div class="col-md-12">
+					<!-- Flex slider Content -->
+					<div class="flexslider-testimonial flexslider">
+						<ul class="slides">
+							<li>
+								<!-- Testimonial Content -->
+								<div class="testimonial-item">
+									<!-- Quote -->
+									<span class="quote lblue">&#8220;</span> 
+									<!-- Your comments -->
+									<blockquote>
+										<!-- Paragraph -->
+										<p>Small place with a focus on healthy fare. Having said that, we were a group of 8 (stretches the place a bit) and most people got burgers.
+											A lot of the vegetables, wine, etc... is locally sourced - which gives a freshness and uniqueness.
+											So, yes, there are a lot of healthy options on the menu - yet... there's also your burgers, fries, beer, etc... that you'd expect. </p>
+									</blockquote>
+									<!-- Heading with image -->
+									<h4><img class="img-responsive img-circle" src="/assets/user.jpg" alt="" /> Maria Smith<span> invited reviewer</span></h4>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+							<li>
+								<!-- Testimonial Content -->
+								<div class="testimonial-item">
+									<!-- Quote -->
+									<span class="quote lblue">&#8220;</span> 
+									<!-- Your comments -->
+									<blockquote>
+										<!-- Paragraph -->
+										<p> Undoubtedly one of the best spots in Ithaca!
+											Breakfast here is whatever you want it to be. Highly recommend the homemade donuts and the bacon, egg & cheese on croissant.
+											If you're going later in the day (but not too late because they'll run out!) Friday's special is a plate of perfection: golden brown fish filet on crisp French bread, and luringly savory french fries. </p>
+									</blockquote>
+									<!-- Heading with image -->
+									<h4><img class="img-responsive img-circle" src="/assets/user.jpg" alt="" />Johnson<span> user at Pizza Hot</span></h4>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+							<li>
+								<!-- Testimonial Content -->
+								<div class="testimonial-item">
+									<!-- Quote -->
+									<span class="quote lblue">&#8220;</span> 
+									<!-- Your comments -->
+									<blockquote>
+										<!-- Paragraph -->
+										<p>Went there on a whim,  well based on ithaca top ten, which said they were having a mariachi band playing.  Boy am I glad we went,  giant beers and 56oz Margheritas, delicious shrimp tacos,
+											and finally a Mexican place in town that offers more then flan for dessert. (Fried ice cream is great, I'm pretty sure it's a zero calorie dessert)
+										</p>
+									</blockquote>
+									<!-- Heading with image -->
+									<h4><img class="img-responsive img-circle" src="/assets/user.jpg" alt="" /> David<span> user at Pizza Hot</span></h4>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Testimonial End -->
+	
+	
+</div><!-- / Main Content End -->

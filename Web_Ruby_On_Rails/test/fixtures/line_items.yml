@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product: pizza1
+  order: one
+
+
+two:
+  product: pizza1
+  order: one
+

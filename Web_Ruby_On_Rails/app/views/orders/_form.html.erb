@@ -1,0 +1,120 @@
+<!-- Banner Start -->
+<div class="banner padd">
+  <div class="container">
+    <!-- Image -->
+    <%= image_tag("crown-white.png", class: "img-responsive") %>
+    <!-- <img class="img-responsive" src="images/crown-white.png" alt="" /> -->
+    <!-- Heading -->
+    <h2 class="white">Checkout</h2>
+    <ol class="breadcrumb">
+      <li>Home</a></li>
+      <li>My Cart</a></li>
+      <li>Checkout</li>
+    </ol>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<!-- Banner End -->
+
+
+<!-- Inner Content -->
+<div class="inner-page padd">
+
+  <!-- Checkout Start -->
+  
+  <div class="checkout">
+    <div class="container">
+    <!-- Heading -->
+    <h4>Shipping & Billing Details</h4>
+      <div class="row">
+        <div class="col-md-7 col-sm-6">
+          <!-- Checkout Form -->
+          <%= form_for @order, html: { class: "form-horizontal" } do |f| %>
+            <% if @order.errors.any? %>
+              <div id="error_explanation">
+                <h3 style="margin-top:0"><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h3>
+
+                <ul style = "margin-bottom: 15px">
+                <% @order.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group">
+              <%= f.label :name, class: "col-md-2 control-label" %>
+              <div class="col-md-8">
+                <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :address, class: "col-md-2 control-label" %>
+              <div class="col-md-8">
+                <%= f.text_area :address, class: "form-control", placeholder: "Address" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :phone, class: "col-md-2 control-label" %>
+              <div class="col-md-8">
+                <%= f.telephone_field :phone, class: "form-control", placeholder: "Phone" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :email, class: "col-md-2 control-label" %>
+              <div class="col-md-8">
+                <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :pay_type, class: "col-md-2 control-label" %>
+              <div class="col-md-8">
+                <%= f.select :pay_type, Order::PAYMENT_TYPES, prompt: 'Select a payment method', class: "form-control input-sm" %>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-offset-2 col-md-8">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Accept Terms & Conditions</input>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-offset-2 col-md-8">
+                <%= f.submit 'Confirm Order', class: "btn btn-danger btn-sm"%>&nbsp;
+                <button type="reset" class="btn btn-default btn-sm">Reset</button>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        
+        <div class="col-md-5 col-sm-6">
+          <!-- Checkout sidebar items -->
+          <div class="sidebar-item">
+            <!-- Heading -->
+            <h5 class="pull-left">Hot Delivery</h5>
+            <!-- Sidebar content icon -->
+            <i class="fa fa-truck br-green pull-right"></i>
+            <div class="clearfix"></div>
+            <!-- Sidebar Paragraph -->
+            <p>We promise to delivery your dish with the most comfortable temperature to enjoy. Free delivery and 20% discount if your</br>dish is below 20C&deg;!</p>
+          </div>
+          <!-- Checkout sidebar items -->
+          <div class="sidebar-item">
+            <!-- Heading -->
+            <h5 class="pull-left">Any Question</h5>
+            <!-- Sidebar content icon -->
+            <i class="fa fa-headphones br-red pull-right"></i>
+            <div class="clearfix"></div>
+            <!-- Sidebar Paragraph -->
+            <p>If you have any question or complain about hot delivery service, please do not hesitate to contact us using the contact form. Help</br> us improve ourselves!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Checkout End -->
+  
+</div><!-- / Inner Page Content End -->

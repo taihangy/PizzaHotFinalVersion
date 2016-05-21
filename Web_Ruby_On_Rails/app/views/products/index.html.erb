@@ -1,0 +1,106 @@
+
+<div class="wrapper" >
+    <!-- Banner Start -->
+		<div class="banner padd">
+			<div class="container">
+				<!-- Image -->
+				<%= image_tag("crown-white.png", class: "img-responsive")%>
+				<!-- Heading -->
+				<h2 class="white">List of Products</h2>
+				<ol class="breadcrumb">
+					<li>Home</li>
+					<li>Products</li>
+					<li class="active">List of Products</li>
+				</ol>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!-- Banner End -->
+		<div class="container">
+				<div class="row">
+				  <div class="col-md-12" style="margin-top: 40px">
+				    <div class="component-content">
+          			<!-- tabs -->
+          			<ul class="nav nav-tabs">
+          			  <li class="active"><a href="#home" data-toggle="tab">Pizza</a></li>
+          			  <li><a href="#profile" data-toggle="tab">Burgers</a></li>
+          			  <li><a href="#cont" data-toggle="tab">Desserts</a></li>
+          			</ul>
+          			<div class="tab-content">
+          			  <div class="tab-pane fade in active" id="home">
+          		      <ul class="media-list" style="margin-bottom: 20px">
+                      <% @products.each do |product| %>
+                        <% if product.catagory == "Pizza" %>
+                          <li class="media" style = "margin-top: 20px">
+                              <div class="media-left media-middle">
+                                  <%= link_to image_tag(product.image_url, width: 200, class: 'media-object img-thumbnail'), products_path %> 
+                              </div>
+                              <div class="media-body">
+                                  <h2 class="media-heading"><%= product.title %>
+                                  <span class="badge"><%= number_to_currency(product.price) %></span>
+                                  </h2>
+                                  <p style = "font-style:italic; padding-bottom: 20px"><%= truncate(strip_tags(product.description), length: 80) %></p>
+                                  <%= link_to 'Show', product, class: "btn btn-danger btn-sm" %>
+                                  <%= link_to 'Edit', edit_product_path(product), class: "btn btn-danger btn-sm"%>
+                                  <%= link_to 'Delete', product, class: "btn btn-default btn-sm", confirm: 'Are you sure?', method: :delete %>
+                              </div>
+                          </li>
+                        <% end %>
+                      <% end %>
+                    </ul>
+                    <%= link_to 'New product', new_product_path, class: "btn btn-danger btn-sm" %>
+          			  </div>
+          			  <div class="tab-pane fade" id="profile">
+  					        <ul class="media-list" style="margin-bottom: 20px">
+                      <% @products.each do |product| %>
+                        <% if product.catagory == "Burger" %>
+                          <li class="media" style = "margin-top: 20px">
+                              <div class="media-left media-middle">
+                                  <%= link_to image_tag(product.image_url, width: 200, class: 'media-object img-thumbnail'), products_path %> 
+                              </div>
+                              <div class="media-body">
+                                  <h2 class="media-heading"><%= product.title %>
+                                  <span class="badge"><%= number_to_currency(product.price) %></span>
+                                  </h2>
+                                  <p style = "font-style:italic; padding-bottom: 20px"><%= truncate(strip_tags(product.description), length: 80) %></p>
+                                  <%= link_to 'Show', product, class: "btn btn-danger btn-sm" %>
+                                  <%= link_to 'Edit', edit_product_path(product), class: "btn btn-danger btn-sm"%>
+                                  <%= link_to 'Delete', product, class: "btn btn-default btn-sm", confirm: 'Are you sure?', method: :delete %>
+                              </div>
+                          </li>
+                        <% end %>
+                      <% end %>
+                    </ul>
+                    <%= link_to 'New product', new_product_path, class: "btn btn-danger btn-sm" %>
+  							  </div>
+  							  <div class="tab-pane fade" id="cont">
+  								  <ul class="media-list" style="margin-bottom: 20px">
+                      <% @products.each do |product| %>
+                        <% if product.catagory == "Dessert" %>
+                          <li class="media" style = "margin-top: 20px">
+                              <div class="media-left media-middle">
+                                  <%= link_to image_tag(product.image_url, width: 200, class: 'media-object img-thumbnail'), products_path %> 
+                              </div>
+                              <div class="media-body">
+                                  <h2 class="media-heading"><%= product.title %>
+                                  <span class="badge"><%= number_to_currency(product.price) %></span>
+                                  </h2>
+                                  <p style = "font-style:italic; padding-bottom: 20px"><%= truncate(strip_tags(product.description), length: 80) %></p>
+                                  <%= link_to 'Show', product, class: "btn btn-danger btn-sm" %>
+                                  <%= link_to 'Edit', edit_product_path(product), class: "btn btn-danger btn-sm"%>
+                                  <%= link_to 'Delete', product, class: "btn btn-default btn-sm", confirm: 'Are you sure?', method: :delete %>
+                              </div>
+                          </li>
+                        <% end %>
+                      <% end %>
+                    </ul>
+                    <%= link_to 'New product', new_product_path, class: "btn btn-danger btn-sm" %>
+  							  </div>
+            			</div>
+          		</div>
+              
+          </div>
+    		</div>
+    	</div>
+</div>
+

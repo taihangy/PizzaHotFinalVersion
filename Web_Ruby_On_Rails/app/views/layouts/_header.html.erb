@@ -1,0 +1,248 @@
+<!-- Header Start -->
+
+<div class="header">
+	<div class="container">
+		<!-- Header top area content -->
+		<div class="header-top">
+			<div class="row">
+				<div class="col-md-4 col-sm-4">
+					<% if session[:cart_id] %>
+						<%  if session[:user_id] %>
+							<div class="sign">
+								<%= button_to "Logout", logout_path, method: :delete, class: "btn btn-danger btn-sm" %>
+							</div>
+						<% else %>
+							<div class="sign">
+								<%= button_to "Admin Login", login_path, method: :post, class: "btn btn-default btn-sm" %>
+							</div>
+						<% end %>
+					<% end %>
+				</div>
+
+				<div class="col-md-4 col-sm-4">
+					<!-- Header top content search box -->
+					<div class="header-search">
+						<form class="form" role="form">
+							<div class="input-group">
+							  <input type="text" class="form-control" placeholder="Search...">
+							  <span class="input-group-btn">
+								<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+							  </span>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<!-- Button Kart -->
+					<div class="btn-cart-md">
+						<a class="cart-link" href="#">
+							<!-- Image -->
+							<img class="img-responsive" src="/assets/cart.png" alt="" />
+							<!-- Heading -->
+							<h4>Shopping Cart</h4>
+							<span>7 items $79</span>
+							<div class="clearfix"></div>
+						</a>
+						<ul class="cart-dropdown" role="menu">
+							<li>
+								<!-- Cart items for shopping list -->
+								<div class="cart-item">
+									<!-- Item remove icon -->
+									<a href="#"><i class="fa fa-times"></i></a>
+									<!-- Image -->
+									<img class="img-responsive img-rounded" src="/assets/nav-menu/nav1.jpg" alt="" />
+									<!-- Title for purchase item -->
+									<span class="cart-title"><a href="#">Fruit</a></span>
+									<!-- Cart item price -->
+									<span class="cart-price pull-right red">$20</span>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+							<li>
+								<!-- Cart items for shopping list -->
+								<div class="cart-item">
+									<!-- Item remove icon -->
+									<a href="#"><i class="fa fa-times"></i></a>
+									<!-- Image -->
+									<img class="img-responsive img-rounded" src="/assets/nav-menu/nav2.jpg" alt="" />
+									<!-- Title for purchase item -->
+									<span class="cart-title"><a href="#">Cookies</a></span>
+									<!-- Cart item price -->
+									<span class="cart-price pull-right red">$19</span>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+							<li>
+								<!-- Cart items for shopping list -->
+								<div class="cart-item">
+									<!-- Item remove icon -->
+									<a href="#"><i class="fa fa-times"></i></a>
+									<!-- Image -->
+									<img class="img-responsive img-rounded" src="/assets/nav-menu/nav3.jpg" alt="" />
+									<!-- Title for purchase item -->
+									<span class="cart-title"><a href="#">Cake</a></span>
+									<!-- Cart item price -->
+									<span class="cart-price pull-right red">$40</span>
+									<div class="clearfix"></div>
+								</div>
+							</li>
+							<li>
+								<!-- Cart items for shopping list -->
+								<div class="cart-item">
+									<a class="btn btn-danger" data-toggle="modal" href="#shoppingcart1">Checkout</a>
+								</div>
+							</li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-sm-5">
+				<!-- Link -->
+				<a href="index.html">
+					<!-- Logo area -->
+					<div class="logo">
+						<!-- Heading -->
+						<h1 >Pizza Hot</h1>
+						<!-- Paragraph -->
+						<p>Hot Delivery, Warm Services</p>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-8 col-sm-7">
+				<!-- Navigation -->
+				<nav class="navbar navbar-default navbar-right" role="navigation">
+					<div class="container-fluid">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav">
+								<li>
+									<%= link_to store_path do%>
+										<%= image_tag("nav-menu/nav1.jpg", class: "img-responsive") %>Home
+									<% end %>
+								</li>
+								<% if session[:user_id] %>
+								<li>
+									<%= link_to orders_path do %>
+										<%= image_tag("nav-menu/nav2.jpg", class: "img-responsive") %>Order
+									<% end %>
+								</li>
+								<li>
+									<%= link_to products_path do %>
+										<%= image_tag("nav-menu/nav3.jpg", class: "img-responsive") %>Product
+									<% end %>
+								</li>
+								<li>
+									<%= link_to users_path do %>
+										<%= image_tag("nav-menu/nav5.jpg", class: "img-responsive") %>User
+									<% end %>
+								</li>
+								<li>
+									<%= link_to contacts_path do %>
+										<%= image_tag("nav-menu/nav6.jpg", class: "img-responsive") %>Feedback
+									<% end %>
+								</li>
+								<% else %>
+								<li class="dropdown hidden-xs">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/nav-menu/nav2.jpg" class="img-responsive" alt="" /> Menu <b class="caret"></b></a>
+									<ul class="dropdown-menu dropdown-md">
+										<li>
+											<div class="row">
+												<div class="col-md-4 col-sm-6">
+													<!-- Menu Item -->
+													<div class="menu-item">
+														<!-- Heading -->
+														<h3 style="font-size: 20px">Vegetarian</h3>
+														<!-- Image -->
+														<img src="/assets/dish/dish1.jpg" class="img-responsive" alt="" />
+														<!-- Paragraph -->
+														<p>Fresh Vegetables and fruits for vegetarians.</p>
+														<!-- Button -->
+														<a href="menu.html" class="btn btn-danger btn-xs">View Menu</a>
+													</div>
+												</div>
+												<div class="col-md-4 col-sm-6">
+													<!-- Menu Item -->
+													<div class="menu-item">
+														<!-- Heading -->
+														<h3 style="font-size: 20px">Non-Vegetarian</h3>
+														<!-- Image -->
+														<img src="/assets/dish/dish2.jpg" class="img-responsive" alt="" />
+														<!-- Paragraph -->
+														<p>Chicken, beef and pork menus for you.</p>
+														<!-- Button -->
+														<a href="menu.html" class="btn btn-danger btn-xs">View Menu</a>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<!-- Menu Item -->
+													<div class="menu-item">
+														<!-- Heading -->
+														<h3 style="font-size: 20px">International Special</h3>
+														<!-- Image -->
+														<img src="/assets/dish/dish3.jpg" class="img-responsive" alt="" />
+														<!-- Paragraph -->
+														<p>International dishes and have a try!</p>
+														<!-- Button -->
+														<a href="menu.html" class="btn btn-danger btn-xs">View Menu</a>
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</li>
+								<li class="dropdown visible-xs">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Menu <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="items.html">Vegetarian</a></li>
+										<li><a href="items.html">Non Vegetarian</a></li>
+										<li><a href="items.html">International Special</a></li>
+									</ul>
+								</li>
+
+								<li class="dropdown hidden-xs">
+									<a href="menu.html" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/nav-menu/nav3.jpg" class="img-responsive" alt="" /> Special <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="items.html">Seafoods</a></li>
+										<li><a href="items.html">Chicken</a></li>
+										<li><a href="items.html">Dessert</a></li>
+										<li><a href="items.html">Drinks</a></li>
+										<li><a href="items.html">Pizza</a></li>
+										<li><a href="items.html">Burgers</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<%= link_to new_contact_path do %>
+										<%= image_tag("nav-menu/nav4.jpg", class: "img-responsive") %>Contact
+									<% end %>
+								</li>
+								<li>
+									<%= link_to abouts_show_path do %>
+										<%= image_tag("nav-menu/nav5.jpg", class: "img-responsive") %>About
+									<% end %>
+								</li>
+								<% end %>
+							</ul>
+						</div><!-- /.navbar-collapse -->
+					</div><!-- /.container-fluid -->
+				</nav>
+
+			</div>
+		</div>
+	</div> <!-- / .container -->
+</div>
+
+<!-- Header End -->

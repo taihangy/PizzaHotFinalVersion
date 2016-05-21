@@ -1,0 +1,42 @@
+<div class="wrapper" >
+  	<!-- Banner Start -->
+	<div class="banner padd">
+		<div class="container">
+			<!-- Image -->
+			<img class="img-responsive" src="assets/crown-white.png" alt="" />
+			<!-- Heading -->
+			<h2 class="white">View User</h2>
+			<ol class="breadcrumb">
+				<li>Home</li>
+				<li>User</li>
+				<li class="active">View User</li>
+			</ol>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!-- Banner End -->
+		
+	<div class="container">
+		<div class="row">
+		  	<div class="col-md-3 col-sm-3"></div>
+			<div class="col-md-6 col-sm-6">
+  				<div class="table-responsive" style = "margin-top:40px">
+					<table class="table table-bordered">
+						<tr>
+							<th>Name</th>
+							<th>Password Digest</th>
+						</tr>
+					<tbody>
+          				<tr>
+            				<td><%= @user.name %></td>
+            				<td><%= @user.password_digest %></td>
+					</tbody>
+				</table>
+    		</div>
+	    <div class="col-md-5 col-sm-5"></div>
+	    <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-danger btn-sm"%>&nbsp;&nbsp;&nbsp;&nbsp;
+	    <%= link_to 'Back', users_path, class: "btn btn-default btn-sm"%>
+  </div>
+</div>
+
+		

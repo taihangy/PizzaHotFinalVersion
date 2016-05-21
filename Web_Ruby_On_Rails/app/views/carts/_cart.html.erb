@@ -1,0 +1,44 @@
+<div class="wrapper" >
+      <!-- Banner Start -->
+			<div class="banner padd">
+				<div class="container">
+					<!-- Image -->
+					<%= image_tag("crown-white.png", class: "img-responsive") %>
+					<!-- Heading -->
+					<h2 class="white">My Cart</h2>
+					<ol class="breadcrumb">
+						<li>Home</li>
+						<li class="active">My Cart</li>
+					</ol>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!-- Banner End -->
+			<div class="container">
+				<div class="row">
+				  <div class="col-md-4 col-sm-4"></div>
+					<div class="col-md-4 col-sm-4">
+      				<div class="table-responsive" style = "margin-top:40px">
+	        			<table class="table">
+	        				<th>Quantity x Dish</th>
+	        				<th>Price</th>
+	        				<%= render(cart.line_items) %>
+							<tr>
+								<td><strong>Total</strong></td>
+								<td><%= number_to_currency(cart.total_price) %></td>
+							</tr>
+						</table>
+		
+						<div class="col-md-1 col-sm-1"></div>
+						<div class="actions">
+							<%= link_to 'Checkout', new_order_path, method: :get, class: "btn btn-danger btn-sm" %>&nbsp;&nbsp;
+							<%= link_to 'Continue Shopping', store_path, class: "btn btn-danger btn-sm" %>&nbsp;&nbsp;
+							<%= link_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are you sure to delete this item?' }, class: "btn btn-default btn-sm" %>
+						</div>
+            		</div>
+            		<div class="col-md-4 col-sm-4"></div>
+            		
+          		</div>
+    		</div>
+    	</div>
+  </div>

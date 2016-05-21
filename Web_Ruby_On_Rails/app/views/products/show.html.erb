@@ -1,0 +1,97 @@
+<!-- Banner Start -->
+
+<div class="banner padd">
+	<div class="container">
+		<!-- Image -->
+		<%= image_tag("crown-white.png", class: "img-responsive")%>
+		<!-- Heading -->
+		<h2 class="white">Order Now</h2>
+		
+		<div class="clearfix"></div>
+	</div>
+</div>
+
+<!-- Banner End -->
+
+
+
+<!-- Inner Content -->
+<div class="inner-page padd">
+
+	<!-- Single Item Start -->
+	
+	<div class="single-item">
+		<div class="container">
+			<!-- Shopping single item contents -->
+			<div class="single-item-content">
+				<div class="row">
+					<div class="col-md-4 col-sm-5">
+						<!-- Product image -->
+						<%= image_tag(@product.image_url, class: "img-responsive img-thumbnail")%>
+					</div>
+					<div class="col-md-7 col-sm-7">
+						<!-- Heading -->
+						<h3><%= @product.title %></h3>
+						<div class="row">
+							<div class="col-md-12 col-sm-12">
+								<!-- Single item details -->
+								<div class="item-details">
+									<!-- Paragraph -->
+									<p class="text-justify"><%= sanitize(@product.description) %></p>
+									<!-- Heading -->
+								</div>
+							</div>
+							<div class="col-md-8 col-sm-12">
+								<!-- Form inside table wrapper -->
+								<div class="table-responsive">
+									<!-- Table -->
+									<table class="table table-bordered">
+										<tr>
+											<td>Price</td>
+											<td><%= @product.price %></td>
+										</tr>
+										<tr>
+											<td>Average Temperature</td>
+											<td>25C&deg;</td>
+										</tr>
+										<tr>
+											<td>Delivery Time</td>
+											<td>15 Min</td>
+										</tr>
+										<tr>
+											<td>Rating</td>
+											<td>9.5</td>
+										</tr>
+										<!-- <tr>
+											<td>Quantity</td>
+											<td><div class="form-group">
+												<input class="form-control input-sm" type="text" placeholder="1" />
+											</div></td>
+										</tr> -->
+										<!-- <tr>
+											<td>Payment Mode</td>
+											<td><div class="form-group">
+												<select class="form-control input-sm">
+													<option>Cash on delivery</option>
+													<option>Credit Card</option>
+												</select>
+											</div></td>
+										</tr> -->
+									</table>
+								</div><!--/ Table responsive class end -->
+								<% if session[:user_id]%>
+						    		<%= link_to 'Edit', edit_product_path(@product), class: "btn btn-danger btn-sm"%> &nbsp;&nbsp;&nbsp;&nbsp;
+									<%= link_to 'Back', products_path, class: "btn btn-default btn-sm"%>
+								<% else %>
+									<%= link_to 'Add to Cart', line_items_path(product_id: @product), method: :post, class: "btn btn-danger" %>
+									<%= link_to 'Continue Shopping', store_path, class: "btn btn-danger btn-sm"%>
+								<% end %>
+							</div>
+						</div><!--/ Inner row end  -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Single Item End -->

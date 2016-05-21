@@ -1,0 +1,49 @@
+
+<div class="wrapper" >
+  <!-- Banner Start -->
+		<div class="banner padd">
+			<div class="container">
+				<!-- Image -->
+				<img class="img-responsive" src="assets/crown-white.png" alt="" />
+				<!-- Heading -->
+				<h2 class="white">List of Users</h2>
+				<ol class="breadcrumb">
+					<li>Home</li>
+					<li>User</li>
+					<li class="active">List of Users</li>
+				</ol>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!-- Banner End -->
+		<div class="container">
+			<div class="row">
+			  <div class="col-md-4 col-sm-4"></div>
+				<div class="col-md-4 col-sm-4">
+  				<div class="table-responsive" style = "margin-top:40px">
+        			<table class="table table-bordered">
+        			<tr>
+        					<th>Name</th>
+        					<th>Operation</th>
+        				</tr>
+        				<tbody>
+        					<% @users.each do |user| %>
+		                  		<tr>
+		                    	<td><%= user.name %></td>
+		                    	<td><%= link_to 'Show', user %>  / 
+		                    	<%= link_to 'Edit', edit_user_path(user) %> / 
+		                    	<%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure to delete this user?' } %></td>
+		                  		</tr>
+                  			<% end %>
+        				</tbody>
+        			</table>
+        		</div>
+        		<div class="col-md-4 col-sm-4"></div>
+        		<%= link_to 'Invite New User', new_user_path, class: "btn btn-danger btn-sm"%>
+      		</div>
+		</div>
+	</div>
+</div>
+
+
+

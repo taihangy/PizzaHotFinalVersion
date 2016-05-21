@@ -1,0 +1,6 @@
+<tr>
+	<td><strong><%= line_item.quantity %>&nbsp;&times;&nbsp;<%= line_item.product.title %></strong></td>
+	<td><%= number_to_currency(line_item.total_price) %></td>
+	<td><%= link_to "Decrease", decrement_line_item_url(line_item.id), method: :put, class: "btn btn-info btn-sm" %></td>
+	<td><%= link_to "Increase", increment_line_item_url(line_item.id), method: :put, class: "btn btn-danger btn-sm" %></td>
+</tr>
